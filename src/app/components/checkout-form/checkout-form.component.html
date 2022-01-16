@@ -1,0 +1,94 @@
+<button mat-button color="primary" [routerLink]="['/cart']">
+  RETURN TO CART
+</button>
+<content fxLayout="column" fxLayoutAlign="space-evenly center">
+  <mat-card
+    class="mat-elevation-z4"
+    fxLayout="column"
+    fxLayoutAlign="space-between start"
+  >
+    <h1>ORDER SUMMARY:</h1>
+    <div *ngFor="let product of cartService.products">
+      <mat-divider></mat-divider>
+      <h2>
+        {{ product.product.title }} - TOTAL PRICE: ${{
+          product.totalPrice | number: "1.2-2"
+        }}
+      </h2>
+      <h3>
+        Price: ${{ product.product.price | number: "1.2-2" }} - Quantity:
+        {{ product.quantity }}
+      </h3>
+      <mat-divider></mat-divider>
+    </div>
+
+    <h1>Total Price: ${{ cartService.totalPrice | number: "1.2-2" }}</h1>
+  </mat-card>
+</content>
+<content fxLayout="column" fxLayoutAlign="space-evenly center">
+  <h1>PAYMENT DETAILS:</h1>
+  <form
+    #form="ngForm"
+    (ngSubmit)="onSubmit()"
+    fxLayout="column"
+    fxLayoutAlign="space-evenly center"
+  >
+    <div fxLayout="row">
+      <label>First Name:</label>
+      <input
+        type="text"
+        name="firstName"
+        required
+        minlength="3"
+        [(ngModel)]="customer.firstName"
+      />
+    </div>
+
+    <div fxLayout="row">
+      <label>Last Name:</label>
+      <input
+        type="text"
+        name="lastName"
+        required
+        minlength="3"
+        [(ngModel)]="customer.lastName"
+      />
+    </div>
+
+    <div fxLayout="row">
+      <label>Email Address:</label>
+      <input type="email" name="email" [(ngModel)]="customer.email" />
+    </div>
+
+    <div fxLayout="row">
+      <label>Phone Number:</label>
+      <input type="tel" name="phoneNumber" [(ngModel)]="customer.phoneNumber" />
+    </div>
+
+    <div fxLayout="row">
+      <label>Address:</label>
+      <input
+        type="text"
+        name="address"
+        required
+        minlength="3"
+        [(ngModel)]="customer.address"
+      />
+    </div>
+
+    <div fxLayout="row">
+      <label>Credit Card Number:</label>
+      <input
+        type="text"
+        name="creditCard"
+        required
+        minlength="16"
+        [(ngModel)]="customer.creditCard"
+      />
+    </div>
+
+    <button mat-raised-button type="submit" [disabled]="form.invalid">
+      Submit
+    </button>
+  </form>
+</content>

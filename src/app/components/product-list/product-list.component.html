@@ -1,0 +1,12 @@
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex *ngFor="let product of apiController.products">
+      <app-product-card
+        [product]="product"
+        [displayDetails]="false"
+        (addToCart)="addToCart($event)"
+        (showProductDetails)="showProductDetails($event)"
+      ></app-product-card>
+    </div>
+  </div>
+</div>
