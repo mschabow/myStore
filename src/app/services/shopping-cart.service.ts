@@ -8,14 +8,11 @@ export class ShoppingCartService {
   public products: ShoppingCartProduct[] = [];
   public customer: Customer;
   public totalPrice: number = 0;
-  public productDetails: Product;
   public cartItemCount: number = 0;
 
   constructor() {
     this.customer = {
-      firstName: '',
-      lastName: '',
-      email: '',
+      name: '',
       phoneNumber: '',
       address: '',
       creditCard: '',

@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mystore';
-  constructor(public cartService: ShoppingCartService){
+  constructor(){
 
   }
 }

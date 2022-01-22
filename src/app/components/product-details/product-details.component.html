@@ -1,4 +1,4 @@
 <button mat-button color="primary" [routerLink]="['/products']">
   RETURN TO PRODUCTS
 </button>
-<app-product-card [product]="cartService.productDetails" (addToCart)="addToCart(cartService.productDetails)"></app-product-card>
+<app-product-card [product]="product" (addToCart)="addToCart(product)"></app-product-card>

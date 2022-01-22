@@ -38,5 +38,6 @@ export class ShoppingCartProductCardComponent implements OnInit {
 
   public removeProduct() {
     this.removeFromCart.emit(this.product);
+    alert("Item removed from cart.")
   }
 }

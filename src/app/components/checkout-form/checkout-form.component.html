@@ -34,57 +34,76 @@
     fxLayoutAlign="space-evenly center"
   >
     <div fxLayout="row">
-      <label>First Name:</label>
+      <label>Name:</label>
       <input
         type="text"
-        name="firstName"
+        id="name"
+        name="name"
         required
         minlength="3"
-        [(ngModel)]="customer.firstName"
+        #name="ngModel"
+        [(ngModel)]="customer.name"
+        (ngModelChange)="validatename()"
+        placeholder="First and Last Name"
       />
-    </div>
-
-    <div fxLayout="row">
-      <label>Last Name:</label>
-      <input
-        type="text"
-        name="lastName"
-        required
-        minlength="3"
-        [(ngModel)]="customer.lastName"
-      />
-    </div>
-
-    <div fxLayout="row">
-      <label>Email Address:</label>
-      <input type="email" name="email" [(ngModel)]="customer.email" />
+      <ng-container *ngIf="!nameValid">
+        <div>Valid Name is Required (must be more than 3 characters)</div>
+      </ng-container>
     </div>
 
     <div fxLayout="row">
       <label>Phone Number:</label>
-      <input type="tel" name="phoneNumber" [(ngModel)]="customer.phoneNumber" />
-    </div>
-
-    <div fxLayout="row">
-      <label>Address:</label>
       <input
-        type="text"
-        name="address"
-        required
-        minlength="3"
-        [(ngModel)]="customer.address"
+        type="tel"
+        name="phoneNumber"
+        minlength="10"
+        maxLength="10"
+        pattern="[0-9]{10}"
+        #phoneNumber="ngModel"
+        [(ngModel)]="customer.phoneNumber"
+        placeholder="Phone Number"
       />
+      <div
+        *ngIf="phoneNumber.errors && phoneNumber.dirty && phoneNumber.touched"
+        fxLayout="column"
+      >
+        <div *ngIf="phoneNumber.errors?.['required']">
+          Phne Number is required
+        </div>
+        <div *ngIf="phoneNumber.errors?.['minlength']">
+          Phone number must be 10 digits
+        </div>
+        <div *ngIf="cardNumber.errors?.['pattern']">Invalid Phone Number.</div>
+      </div>
     </div>
 
     <div fxLayout="row">
-      <label>Credit Card Number:</label>
+      <label for="">Card Number:</label>
+      <br />
       <input
         type="text"
-        name="creditCard"
+        id="cardNumber"
+        pattern="[0-9]{16}"
+        name="cardNumber"
         required
         minlength="16"
+        maxlength="16"
         [(ngModel)]="customer.creditCard"
+        #cardNumber="ngModel"
+        placeholder="Credit Card Number"
       />
+      <div
+        *ngIf="cardNumber.errors && cardNumber.dirty && cardNumber.touched"
+        fxLayout="column"
+      >
+        <div *ngIf="cardNumber.errors?.['required']">
+          Credit Card Number is required
+        </div>
+        <div *ngIf="cardNumber.errors?.['minlength']">
+          Card number must be 16 digits long
+        </div>
+        <div *ngIf="cardNumber.errors?.['pattern']">Invalid Card Number.</div>
+      </div>
     </div>
 
     <button mat-raised-button type="submit" [disabled]="form.invalid">

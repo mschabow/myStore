@@ -15,22 +15,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { ShoppingCartProductCardComponent } from './components/shopping-cart-product-card/shopping-cart-product-card.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
-const routes: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'products', component: ProductListComponent },
-  { path: 'details', component: ProductDetailsComponent },
-  { path: 'cart', component: ShoppingCartComponent },
-  { path: 'checkout', component: CheckoutFormComponent },
-  { path: 'confirmation', component: OrderConfirmationPageComponent },
-];
+
 
 @NgModule({
   declarations: [
@@ -42,6 +35,7 @@ const routes: Routes = [
     ProductCardComponent,
     ShoppingCartProductCardComponent,
     ProductDetailsComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +44,6 @@ const routes: Routes = [
     FlexLayoutModule,
     MatButtonModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
     MatToolbarModule,
     MatIconModule,
     MatDividerModule,

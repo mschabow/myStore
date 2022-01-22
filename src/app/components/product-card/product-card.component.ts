@@ -16,20 +16,17 @@ export class ProductCardComponent {
   @Output()
   addToCart: EventEmitter<Product> = new EventEmitter<Product>();
 
-  @Output()
-  showProductDetails: EventEmitter<Product> = new EventEmitter<Product>();
-
   constructor(private route:Router) {}
 
   ngOnInit(): void {}
 
   public productAdded(addedProduct: Product) {
     this.addToCart.emit(addedProduct);
+    alert(`The item has been added to the cart.`);
   }
 
   public showDetails(detailsProduct: Product) {
-    this.showProductDetails.emit(detailsProduct);
-    this.route.navigateByUrl('/details')
+    this.route.navigateByUrl(`/details/${detailsProduct.id}`)
 
   }
 }
